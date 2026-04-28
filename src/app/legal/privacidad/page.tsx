@@ -31,7 +31,7 @@ export default function PrivacidadPage() {
 
           <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-xl">
             <p className="text-dark-700">
-              En LuxProfile MX, nos comprometemos a proteger su privacidad y datos personales. Esta Política de 
+              En PlacerLux, nos comprometemos a proteger su privacidad y datos personales. Esta Política de 
               Privacidad explica cómo recopilamos, usamos, compartimos y protegemos su información.
             </p>
           </div>
@@ -156,7 +156,7 @@ export default function PrivacidadPage() {
             </p>
             <ul className="list-disc pl-6 text-dark-700 space-y-2">
               <li>Acceder a su configuración de cuenta</li>
-              <li>Contactarnos a privacy@luxprofile.mx</li>
+              <li>Contactarnos a privacy@placerlux.lat</li>
             </ul>
           </section>
 
@@ -222,9 +222,9 @@ export default function PrivacidadPage() {
               Para preguntas sobre esta Política de Privacidad o nuestras prácticas de datos, contáctenos:
             </p>
             <ul className="list-none text-dark-700 space-y-2">
-              <li><strong>Email:</strong> privacy@luxprofile.mx</li>
+              <li><strong>Email:</strong> privacy@placerlux.lat</li>
               <li><strong>Dirección:</strong> [Tu dirección]</li>
-              <li><strong>Oficial de Protección de Datos:</strong> dpo@luxprofile.mx</li>
+              <li><strong>Oficial de Protección de Datos:</strong> dpo@placerlux.lat</li>
             </ul>
           </section>
 

@@ -9,7 +9,7 @@ if (!jwtSecret) {
 }
 const secretKey = new TextEncoder().encode(jwtSecret);
 
-const tokenName = 'luxprofile-token';
+const tokenName = 'placerlux-token';
 const tokenExpiry = 24 * 60 * 60 * 1000; // 24 horas
 
 // =============================================

@@ -67,7 +67,7 @@ export async function POST(
           userId: profile.userId.toString(),
           type: 'general',
           title: '📱 ¡Nuevo contacto por WhatsApp!',
-          message: `Alguien hizo clic en tu WhatsApp desde tu perfil en LuxProfile.`,
+          message: `Alguien hizo clic en tu WhatsApp desde tu perfil en PlacerLux.`,
           link: '/dashboard/analiticas',
           metadata: { profileId: params.id },
         });

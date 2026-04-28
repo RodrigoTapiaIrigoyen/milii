@@ -8,9 +8,9 @@ function getResend(): Resend {
   return new Resend(apiKey);
 }
 
-const FROM_EMAIL = process.env.EMAIL_FROM || 'LuxProfile <noreply@luxprofile.mx>';
-const APP_NAME = 'LuxProfile';
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://luxprofile.mx';
+const FROM_EMAIL = process.env.EMAIL_FROM || 'PlacerLux <noreply@placerlux.lat>';
+const APP_NAME = 'PlacerLux';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://placerlux.lat';
 
 // ─────────────────────────────────────────────
 // Plantilla base compartida
@@ -175,7 +175,7 @@ export async function sendVerificationEmail(email: string, verificationUrl: stri
 
     <!-- Título -->
     <h1 style="margin:0 0 12px;color:#ffffff;font-size:26px;font-weight:700;text-align:center;letter-spacing:-0.3px;">
-      ¡Bienvenida a <span style="color:#d4af37;">LuxProfile</span>!
+      ¡Bienvenida a <span style="color:#d4af37;">PlacerLux</span>!
     </h1>
     <p style="margin:0 0 28px;color:#999;font-size:15px;line-height:1.7;text-align:center;">
       Tu cuenta ha sido creada exitosamente. Solo falta un paso:<br />
@@ -211,9 +211,9 @@ export async function sendVerificationEmail(email: string, verificationUrl: stri
   const { data, error } = await getResend().emails.send({
     from: FROM_EMAIL,
     to: email,
-    subject: `✦ Verifica tu cuenta en LuxProfile`,
+    subject: `✦ Verifica tu cuenta en PlacerLux`,
     html: baseTemplate({
-      previewText: '¡Ya casi! Solo verifica tu email para activar tu perfil en LuxProfile.',
+      previewText: '¡Ya casi! Solo verifica tu email para activar tu perfil en PlacerLux.',
       content,
     }),
   });
@@ -250,7 +250,7 @@ export async function sendPasswordResetEmail(email: string, resetUrl: string) {
       Recuperar contraseña
     </h1>
     <p style="margin:0 0 28px;color:#999;font-size:15px;line-height:1.7;text-align:center;">
-      Recibimos una solicitud para restablecer la contraseña de tu cuenta en <strong style="color:#d4af37;">LuxProfile</strong>.<br />
+      Recibimos una solicitud para restablecer la contraseña de tu cuenta en <strong style="color:#d4af37;">PlacerLux</strong>.<br />
       Haz clic en el botón para crear una nueva.
     </p>
 
@@ -283,9 +283,9 @@ export async function sendPasswordResetEmail(email: string, resetUrl: string) {
   const { data, error } = await getResend().emails.send({
     from: FROM_EMAIL,
     to: email,
-    subject: `🔑 Restablecer contraseña — LuxProfile`,
+    subject: `🔑 Restablecer contraseña — PlacerLux`,
     html: baseTemplate({
-      previewText: 'Solicitud de restablecimiento de contraseña para tu cuenta LuxProfile.',
+      previewText: 'Solicitud de restablecimiento de contraseña para tu cuenta PlacerLux.',
       content,
     }),
   });

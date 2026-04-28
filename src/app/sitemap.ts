@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import { Profile } from '@/models/Profile';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://luxprofile.mx';
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://placerlux.lat';
 
   // Páginas estáticas
   const staticPages: MetadataRoute.Sitemap = [

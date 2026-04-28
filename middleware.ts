@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Obtener token de la cookie
-  const token = request.cookies.get('luxprofile-token')?.value;
+  const token = request.cookies.get('placerlux-token')?.value;
 
   // Verificar si la ruta actual está protegida
   const isProtectedRoute = protectedRoutes.some((route) =>
@@ -51,7 +51,7 @@ export async function middleware(request: NextRequest) {
     } catch (error) {
       // Token inválido, eliminar cookie y redirigir
       const response = NextResponse.redirect(new URL('/login', request.url));
-      response.cookies.delete('luxprofile-token');
+      response.cookies.delete('placerlux-token');
       return response;
     }
   }

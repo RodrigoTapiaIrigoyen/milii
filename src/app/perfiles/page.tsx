@@ -382,7 +382,7 @@ export default function ExplorarPerfilesPage() {
                                     {!profile.isPremium && !profile.isFeatured && (
                                         <div className="absolute inset-0 pointer-events-none flex items-end justify-end p-2">
                                             <span className="text-white/40 text-xs font-semibold tracking-widest select-none rotate-[-20deg] origin-bottom-right">
-                                                LuxProfile
+                                                PlacerLux
                                             </span>
                                         </div>
                                     )}

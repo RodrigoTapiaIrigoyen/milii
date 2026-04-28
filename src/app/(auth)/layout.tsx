@@ -4,7 +4,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white">
-            Lux<span className="text-brand-500">Profile</span>
+            Placer<span className="text-brand-500">Lux</span>
           </h1>
         </div>
         {children}

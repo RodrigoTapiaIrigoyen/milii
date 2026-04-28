@@ -14,17 +14,17 @@ const faqs: FAQ[] = [
   // General
   {
     category: 'General',
-    question: '¿Qué es LuxProfile MX?',
-    answer: 'LuxProfile MX es una plataforma que conecta profesionales de servicios (masajes, acompañamiento a eventos, wellness) con clientes potenciales. Ofrecemos un espacio seguro y verificado para que profesionales puedan anunciarse y ser contactados por personas interesadas en sus servicios.',
+    question: '¿Qué es PlacerLux?',
+    answer: 'PlacerLux es una plataforma que conecta profesionales de servicios (masajes, acompañamiento a eventos, wellness) con clientes potenciales. Ofrecemos un espacio seguro y verificado para que profesionales puedan anunciarse y ser contactados por personas interesadas en sus servicios.',
   },
   {
     category: 'General',
     question: '¿Es legal utilizar esta plataforma?',
-    answer: 'Sí, completamente legal. LuxProfile MX es una plataforma de servicios profesionales legítimos como masajes terapéuticos, acompañamiento a eventos sociales y corporativos, y otros servicios de wellness. No permitimos contenido ilegal ni actividades que violen las leyes mexicanas.',
+    answer: 'Sí, completamente legal. PlacerLux es una plataforma de servicios profesionales legítimos como masajes terapéuticos, acompañamiento a eventos sociales y corporativos, y otros servicios de wellness. No permitimos contenido ilegal ni actividades que violen las leyes mexicanas.',
   },
   {
     category: 'General',
-    question: '¿Quién puede usar LuxProfile MX?',
+    question: '¿Quién puede usar PlacerLux?',
     answer: 'Cualquier persona mayor de 18 años puede crear una cuenta. Los profesionales pueden crear perfiles para ofrecer sus servicios, mientras que los clientes pueden explorar perfiles y contactar directamente a los profesionales.',
   },
 
@@ -96,7 +96,7 @@ const faqs: FAQ[] = [
   {
     category: 'Planes y Pagos',
     question: '¿Puedo obtener un reembolso?',
-    answer: 'Generalmente los pagos no son reembolsables, excepto en casos especiales evaluados individualmente. Si tienes algún problema con tu pago, contáctanos a soporte@luxprofile.mx.',
+    answer: 'Generalmente los pagos no son reembolsables, excepto en casos especiales evaluados individualmente. Si tienes algún problema con tu pago, contáctanos a soporte@placerlux.lat.',
   },
 
   // Búsqueda y Contacto
@@ -137,12 +137,12 @@ const faqs: FAQ[] = [
   {
     category: 'Soporte',
     question: '¿Cómo contacto a soporte?',
-    answer: 'Puedes contactarnos por email a soporte@luxprofile.mx o a través del formulario de contacto. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
+    answer: 'Puedes contactarnos por email a soporte@placerlux.lat o a través del formulario de contacto. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
   },
   {
     category: 'Soporte',
     question: '¿Tienen app móvil?',
-    answer: 'Actualmente LuxProfile MX es una web app responsive que funciona perfectamente en cualquier dispositivo móvil. En futuras actualizaciones consideraremos lanzar apps nativas para iOS y Android.',
+    answer: 'Actualmente PlacerLux es una web app responsive que funciona perfectamente en cualquier dispositivo móvil. En futuras actualizaciones consideraremos lanzar apps nativas para iOS y Android.',
   },
 ];
 
@@ -179,8 +179,8 @@ export default function FAQPage() {
         {/* Intro */}
         <div className="card-elevated p-6 mb-8 text-center">
           <p className="text-dark-700">
-            Encuentra respuestas rápidas a las preguntas más comunes sobre LuxProfile MX. 
-            Si no encuentras lo que buscas, no dudes en <Link href="mailto:soporte@luxprofile.mx" className="text-brand-600 hover:text-brand-700 font-medium">contactarnos</Link>.
+            Encuentra respuestas rápidas a las preguntas más comunes sobre PlacerLux. 
+            Si no encuentras lo que buscas, no dudes en <Link href="mailto:soporte@placerlux.lat" className="text-brand-600 hover:text-brand-700 font-medium">contactarnos</Link>.
           </p>
         </div>
 
@@ -246,7 +246,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="mailto:soporte@luxprofile.mx"
+              href="mailto:soporte@placerlux.lat"
               className="btn-primary inline-flex items-center justify-center gap-2"
             >
               Enviar Email

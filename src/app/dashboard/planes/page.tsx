@@ -148,7 +148,7 @@ export default function PlanesPage() {
       <nav className="bg-white border-b border-dark-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/dashboard" className="text-2xl font-bold">
-            Lux<span className="text-brand-500">Profile</span>
+            Placer<span className="text-brand-500">Lux</span>
           </Link>
           <NotificationBell />
         </div>

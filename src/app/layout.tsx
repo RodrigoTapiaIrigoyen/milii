@@ -15,12 +15,12 @@ const spaceGrotesk = localFont({
   display: 'swap',
 });
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://luxprofile.mx';
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://placerlux.lat';
 
 export const metadata: Metadata = {
   title: {
-    default: 'LuxProfile MX — Perfiles Premium Verificados',
-    template: '%s | LuxProfile MX',
+    default: 'PlacerLux — Perfiles Premium Verificados',
+    template: '%s | PlacerLux',
   },
   description:
     'Encuentra perfiles premium verificados en México. Escorts y acompañantes en CDMX, Guadalajara, Monterrey y más ciudades. Perfiles reales, contacto directo.',
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_MX',
     url: appUrl,
-    siteName: 'LuxProfile MX',
-    title: 'LuxProfile MX — Perfiles Premium Verificados',
+    siteName: 'PlacerLux',
+    title: 'PlacerLux — Perfiles Premium Verificados',
     description:
       'Encuentra perfiles premium verificados en México. Escorts y acompañantes en CDMX, Guadalajara, Monterrey y más ciudades.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LuxProfile MX — Perfiles Premium Verificados',
+    title: 'PlacerLux — Perfiles Premium Verificados',
     description:
       'Encuentra perfiles premium verificados en México. Perfiles reales, contacto directo.',
   },

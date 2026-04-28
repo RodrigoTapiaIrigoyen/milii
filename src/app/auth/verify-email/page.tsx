@@ -134,7 +134,7 @@ function VerifyEmailContent() {
         <div className="mt-6 text-center">
           <p className="text-sm text-dark-600">
             ¿Necesitas ayuda?{' '}
-            <a href="mailto:soporte@luxprofile.mx" className="text-brand-600 hover:text-brand-700 font-medium">
+            <a href="mailto:soporte@placerlux.lat" className="text-brand-600 hover:text-brand-700 font-medium">
               Contacta a soporte
             </a>
           </p>

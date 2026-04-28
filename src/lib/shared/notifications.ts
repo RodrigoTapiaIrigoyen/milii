@@ -138,7 +138,7 @@ export async function cleanOldNotifications() {
 export const NotificationTemplates = {
   welcome: (name: string) => ({
     type: 'welcome' as NotificationType,
-    title: '¡Bienvenido a LuxProfile MX!',
+    title: '¡Bienvenido a PlacerLux!',
     message: `Hola ${name}, gracias por unirte a nuestra plataforma. Comienza creando tu perfil profesional.`,
     link: '/dashboard/perfil/crear',
   }),

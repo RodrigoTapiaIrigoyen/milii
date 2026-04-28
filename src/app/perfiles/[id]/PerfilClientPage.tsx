@@ -82,7 +82,7 @@ export default function PerfilClientPage({ initialProfile, isPreview = false }: 
     }).catch(() => {});
 
     const message = encodeURIComponent(
-      `Hola ${profile.name}, vi tu perfil en LuxProfile y me gustaría contratar tus servicios.`
+      `Hola ${profile.name}, vi tu perfil en PlacerLux y me gustaría contratar tus servicios.`
     );
     window.open(`https://wa.me/${profile.whatsapp}?text=${message}`, '_blank');
   };
@@ -101,7 +101,7 @@ export default function PerfilClientPage({ initialProfile, isPreview = false }: 
 
   const handleShare = async () => {
     const shareData = {
-      title: `${profile.name} - LuxProfile`,
+      title: `${profile.name} - PlacerLux`,
       text: profile.description,
       url: window.location.href,
     };
@@ -195,7 +195,7 @@ export default function PerfilClientPage({ initialProfile, isPreview = false }: 
                     {!profile.isPremium && !profile.isFeatured && (
                       <div className="absolute inset-0 pointer-events-none flex items-end justify-end p-4">
                         <span className="text-white/30 text-sm font-semibold tracking-[0.25em] select-none rotate-[-15deg] origin-bottom-right">
-                          LuxProfile
+                          PlacerLux
                         </span>
                       </div>
                     )}
@@ -425,7 +425,7 @@ export default function PerfilClientPage({ initialProfile, isPreview = false }: 
               )}
               <div className="p-3 bg-gradient-to-r from-brand-50 to-purple-50 rounded-xl border border-brand-100">
                 <p className="text-xs text-dark-700 text-center font-medium">
-                  💬 Menciona que viste este perfil en LuxProfile
+                  💬 Menciona que viste este perfil en PlacerLux
                 </p>
               </div>
             </div>

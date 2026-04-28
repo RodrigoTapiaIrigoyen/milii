@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
 
     // Definir precios por plan
     const plans = {
-      premium: { price: 99, title: 'Suscripción Premium LuxProfile - 1 mes' },
-      vip: { price: 199, title: 'Suscripción VIP LuxProfile - 1 mes' },
+      premium: { price: 99, title: 'Suscripción Premium PlacerLux - 1 mes' },
+      vip: { price: 199, title: 'Suscripción VIP PlacerLux - 1 mes' },
     };
 
     const selectedPlan = plans[plan as keyof typeof plans];

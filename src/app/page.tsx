@@ -50,7 +50,7 @@ export default async function Home() {
 
   // Detectar sesión desde la cookie HTTP-only
   const cookieStore = cookies();
-  const token = cookieStore.get('luxprofile-token')?.value;
+  const token = cookieStore.get('placerlux-token')?.value;
   let isLoggedIn = false;
   let userRole: string | null = null;
   if (token) {
@@ -70,7 +70,7 @@ export default async function Home() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
         <nav className="flex items-center justify-between py-6 animate-fade-in">
           <div className="font-display text-2xl font-bold tracking-tight text-dark-900">
-            Lux<span className="text-brand-600">Profile MX</span>
+            Placer<span className="text-brand-600">Lux</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/perfiles" className="text-dark-700 hover:text-brand-600 font-medium transition">
@@ -518,7 +518,7 @@ export default async function Home() {
                 ¿Lista para empezar a generar ingresos?
               </h4>
               <p className="mt-3 max-w-xl text-dark-600">
-                Únete a LuxProfile MX y publica tu perfil en menos de 5 minutos. Sin permanencia, cancela cuando quieras.
+                Únete a PlacerLux y publica tu perfil en menos de 5 minutos. Sin permanencia, cancela cuando quieras.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 md:mt-0">
@@ -536,7 +536,7 @@ export default async function Home() {
         <footer className="mt-16 border-t border-dark-200/70 py-12">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-dark-700 font-medium mb-4">
-              LuxProfile MX - Plataforma profesional para servicios personales verificados en México
+              PlacerLux - Plataforma profesional para servicios personales verificados en México
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-dark-600 mb-6">
               <Link href="/legal/terminos" className="hover:text-brand-600 transition">
@@ -551,12 +551,12 @@ export default async function Home() {
                 Preguntas Frecuentes
               </Link>
               <span>•</span>
-              <a href="mailto:soporte@luxprofile.mx" className="hover:text-brand-600 transition">
+              <a href="mailto:soporte@placerlux.lat" className="hover:text-brand-600 transition">
                 Contacto
               </a>
             </div>
             <p className="text-xs text-dark-500">
-              © {new Date().getFullYear()} LuxProfile MX. Todos los derechos reservados.
+              © {new Date().getFullYear()} PlacerLux. Todos los derechos reservados.
             </p>
           </div>
         </footer>

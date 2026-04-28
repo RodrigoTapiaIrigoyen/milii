@@ -90,8 +90,8 @@ export default function ReferidosPage() {
     if (!data?.referralLink) return;
     if (navigator.share) {
       await navigator.share({
-        title: 'Únete a LuxProfile',
-        text: '¡Regístrate en LuxProfile con mi código y publica tu perfil gratis!',
+        title: 'Únete a PlacerLux',
+        text: '¡Regístrate en PlacerLux con mi código y publica tu perfil gratis!',
         url: data.referralLink,
       });
     } else {
@@ -210,7 +210,7 @@ export default function ReferidosPage() {
                 </button>
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `¡Hola! Únete a LuxProfile y publica tu perfil profesional. Usa mi enlace: ${data.referralLink}`
+                    `¡Hola! Únete a PlacerLux y publica tu perfil profesional. Usa mi enlace: ${data.referralLink}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -275,7 +275,7 @@ export default function ReferidosPage() {
               },
               {
                 step: '2',
-                title: 'Se registran en LuxProfile',
+                title: 'Se registran en PlacerLux',
                 desc: 'La persona se registra usando tu enlace (el código queda vinculado automáticamente).',
               },
               {

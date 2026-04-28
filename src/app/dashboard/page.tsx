@@ -157,7 +157,7 @@ export default function DashboardPage() {
       <nav className="bg-white border-b border-dark-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold">
-            Lux<span className="text-brand-500">Profile</span>
+            Placer<span className="text-brand-500">Lux</span>
           </Link>
           <div className="flex items-center gap-4">
             {user?.role === 'admin' && (

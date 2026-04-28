@@ -26,7 +26,7 @@ import {
 export const metadata: Metadata = {
   title: 'Publica tu perfil — Llega a miles de clientes en México',
   description:
-    'Crea tu perfil en LuxProfile MX y empieza a recibir clientes hoy. Gratis los primeros 7 días. Sin comisiones. Tu privacidad protegida. CDMX, Guadalajara, Monterrey y todo México.',
+    'Crea tu perfil en PlacerLux y empieza a recibir clientes hoy. Gratis los primeros 7 días. Sin comisiones. Tu privacidad protegida. CDMX, Guadalajara, Monterrey y todo México.',
 };
 
 const STEPS = [
@@ -178,7 +178,7 @@ export default function PublicarPage() {
       <nav className="sticky top-0 z-40 border-b border-dark-100 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/" className="font-display text-xl font-bold text-dark-900">
-            Lux<span className="text-brand-600">Profile MX</span>
+            Placer<span className="text-brand-600">Lux</span>
           </Link>
           <div className="flex items-center gap-3">
             <Link href="/login" className="hidden text-sm font-medium text-dark-600 hover:text-dark-900 transition sm:block">
@@ -216,7 +216,7 @@ export default function PublicarPage() {
           </h1>
 
           <p className="mt-6 mx-auto max-w-2xl text-xl text-gray-300 leading-relaxed">
-            Publica tu perfil en LuxProfile MX y llega a miles de clientes que buscan profesionales en tu ciudad — sin comisiones, con tu privacidad protegida.
+            Publica tu perfil en PlacerLux y llega a miles de clientes que buscan profesionales en tu ciudad — sin comisiones, con tu privacidad protegida.
           </p>
 
           {/* Métricas rápidas */}
@@ -283,7 +283,7 @@ export default function PublicarPage() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-14 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">¿Por qué LuxProfile?</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">¿Por qué PlacerLux?</p>
             <h2 className="mt-3 font-display text-4xl font-bold text-dark-900">
               Diseñado pensando en ti
             </h2>
@@ -326,7 +326,7 @@ export default function PublicarPage() {
                   <th className="pb-4 text-left text-gray-400 font-medium">Característica</th>
                   <th className="pb-4 text-center">
                     <span className="inline-block rounded-xl bg-brand-500/20 px-4 py-1.5 font-bold text-brand-300">
-                      LuxProfile MX
+                      PlacerLux
                     </span>
                   </th>
                   <th className="pb-4 text-center text-gray-500 font-medium">Redes sociales</th>
@@ -643,8 +643,8 @@ export default function PublicarPage() {
           </div>
           <p className="mt-6 text-sm text-brand-200">
             ¿Tienes dudas?{' '}
-            <a href="mailto:soporte@luxprofile.mx" className="underline hover:text-white transition">
-              Escríbenos a soporte@luxprofile.mx
+            <a href="mailto:soporte@placerlux.lat" className="underline hover:text-white transition">
+              Escríbenos a soporte@placerlux.lat
             </a>
           </p>
         </div>
@@ -654,15 +654,15 @@ export default function PublicarPage() {
       <footer className="border-t border-dark-100 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 md:flex-row md:justify-between">
           <Link href="/" className="font-display text-lg font-bold text-dark-900">
-            Lux<span className="text-brand-600">Profile MX</span>
+            Placer<span className="text-brand-600">Lux</span>
           </Link>
           <div className="flex flex-wrap justify-center gap-5 text-sm text-dark-500">
             <Link href="/legal/terminos" className="hover:text-brand-600 transition">Términos</Link>
             <Link href="/legal/privacidad" className="hover:text-brand-600 transition">Privacidad</Link>
             <Link href="/legal/faq" className="hover:text-brand-600 transition">FAQ</Link>
-            <a href="mailto:soporte@luxprofile.mx" className="hover:text-brand-600 transition">Contacto</a>
+            <a href="mailto:soporte@placerlux.lat" className="hover:text-brand-600 transition">Contacto</a>
           </div>
-          <p className="text-xs text-dark-400">© {new Date().getFullYear()} LuxProfile MX</p>
+          <p className="text-xs text-dark-400">© {new Date().getFullYear()} PlacerLux</p>
         </div>
       </footer>
     </div>

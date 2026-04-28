@@ -52,7 +52,7 @@ export default function NotFound() {
         {/* Logo */}
         <div className="mb-4">
           <span className="text-2xl font-bold text-white">
-            Lux<span style={{ color: '#d4af37' }}>Profile</span>
+            Placer<span style={{ color: '#d4af37' }}>Lux</span>
           </span>
         </div>
 

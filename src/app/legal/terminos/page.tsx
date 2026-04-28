@@ -32,7 +32,7 @@ export default function TerminosPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-dark-900 mb-4">1. Aceptación de Términos</h2>
             <p className="text-dark-700 mb-4">
-              Al acceder y utilizar LuxProfile MX ("la Plataforma"), usted acepta estar sujeto a estos Términos y 
+              Al acceder y utilizar PlacerLux ("la Plataforma"), usted acepta estar sujeto a estos Términos y 
               Condiciones. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestros servicios.
             </p>
           </section>
@@ -40,7 +40,7 @@ export default function TerminosPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-dark-900 mb-4">2. Descripción del Servicio</h2>
             <p className="text-dark-700 mb-4">
-              LuxProfile MX es una plataforma digital que conecta profesionales de servicios con clientes potenciales. 
+              PlacerLux es una plataforma digital que conecta profesionales de servicios con clientes potenciales. 
               Los servicios incluyen, pero no se limitan a:
             </p>
             <ul className="list-disc pl-6 text-dark-700 space-y-2 mb-4">
@@ -86,7 +86,7 @@ export default function TerminosPage() {
               </ul>
               <p><strong>5.2 Verificación:</strong> Nos reservamos el derecho de verificar la autenticidad de los perfiles 
               y solicitar documentación de identidad.</p>
-              <p><strong>5.3 Moderación:</strong> LuxProfile MX se reserva el derecho de revisar, rechazar o eliminar 
+              <p><strong>5.3 Moderación:</strong> PlacerLux se reserva el derecho de revisar, rechazar o eliminar 
               cualquier contenido que viole estos términos.</p>
             </div>
           </section>
@@ -120,13 +120,13 @@ export default function TerminosPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-dark-900 mb-4">8. Responsabilidad y Limitaciones</h2>
             <div className="space-y-4 text-dark-700">
-              <p><strong>8.1 Intermediación:</strong> LuxProfile MX actúa únicamente como intermediario entre 
+              <p><strong>8.1 Intermediación:</strong> PlacerLux actúa únicamente como intermediario entre 
               profesionales y clientes. No somos responsables de las interacciones o transacciones que ocurran 
               fuera de la Plataforma.</p>
               <p><strong>8.2 Verificación de Usuarios:</strong> Aunque implementamos medidas de verificación, no 
               garantizamos la identidad, calificaciones o intenciones de los usuarios.</p>
               <p><strong>8.3 Limitación de Responsabilidad:</strong> En la medida máxima permitida por la ley, 
-              LuxProfile MX no será responsable de daños indirectos, incidentales o consecuentes.</p>
+              PlacerLux no será responsable de daños indirectos, incidentales o consecuentes.</p>
             </div>
           </section>
 
@@ -134,7 +134,7 @@ export default function TerminosPage() {
             <h2 className="text-2xl font-bold text-dark-900 mb-4">9. Propiedad Intelectual</h2>
             <p className="text-dark-700 mb-4">
               Todos los derechos de propiedad intelectual sobre la Plataforma, incluyendo diseño, código, logotipos 
-              y contenido, pertenecen a LuxProfile MX. Los usuarios conservan los derechos sobre el contenido que publican.
+              y contenido, pertenecen a PlacerLux. Los usuarios conservan los derechos sobre el contenido que publican.
             </p>
           </section>
 
@@ -149,7 +149,7 @@ export default function TerminosPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-dark-900 mb-4">11. Modificaciones</h2>
             <p className="text-dark-700 mb-4">
-              LuxProfile MX se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. 
+              PlacerLux se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. 
               Los cambios entrarán en vigor inmediatamente después de su publicación. El uso continuado de la 
               Plataforma constituye la aceptación de los términos modificados.
             </p>
@@ -169,14 +169,14 @@ export default function TerminosPage() {
               Para preguntas sobre estos Términos y Condiciones, puede contactarnos a través de:
             </p>
             <ul className="list-none text-dark-700 space-y-2">
-              <li><strong>Email:</strong> legal@luxprofile.mx</li>
+              <li><strong>Email:</strong> legal@placerlux.lat</li>
               <li><strong>Dirección:</strong> [Tu dirección]</li>
             </ul>
           </section>
 
           <div className="mt-12 p-6 bg-brand-50 border border-brand-200 rounded-xl">
             <p className="text-sm text-brand-900 font-medium">
-              Al utilizar LuxProfile MX, usted reconoce que ha leído, comprendido y acepta estar sujeto a 
+              Al utilizar PlacerLux, usted reconoce que ha leído, comprendido y acepta estar sujeto a 
               estos Términos y Condiciones, así como a nuestra Política de Privacidad.
             </p>
           </div>

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }).lean();
 
     if (!profile) {
-      return { title: 'Perfil no encontrado — LuxProfile' };
+      return { title: 'Perfil no encontrado — PlacerLux' };
     }
 
     const name = (profile as any).name as string;
@@ -29,29 +29,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const services: string[] = (profile as any).services || [];
     const rawDescription: string = (profile as any).description || '';
     const photo: string | undefined = (profile as any).photos?.[0];
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://luxprofile.mx';
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://placerlux.lat';
 
     const servicesSummary = services.slice(0, 3).join(', ');
     const locationSummary = [city, state].filter(Boolean).join(', ');
-    const title = `${name}${servicesSummary ? ` — ${servicesSummary}` : ''}${locationSummary ? ` en ${locationSummary}` : ''} | LuxProfile`;
+    const title = `${name}${servicesSummary ? ` — ${servicesSummary}` : ''}${locationSummary ? ` en ${locationSummary}` : ''} | PlacerLux`;
     const description =
       rawDescription.slice(0, 155) ||
-      `Perfil de ${name} en LuxProfile.${servicesSummary ? ` ${servicesSummary}.` : ''}${locationSummary ? ` ${locationSummary}.` : ''}`;
+      `Perfil de ${name} en PlacerLux.${servicesSummary ? ` ${servicesSummary}.` : ''}${locationSummary ? ` ${locationSummary}.` : ''}`;
 
     return {
       title,
       description,
       openGraph: {
-        title: `${name} | LuxProfile`,
+        title: `${name} | PlacerLux`,
         description,
         images: photo ? [{ url: photo, width: 800, height: 600, alt: name }] : [],
         url: `${appUrl}/perfiles/${params.id}`,
         type: 'profile',
-        siteName: 'LuxProfile',
+        siteName: 'PlacerLux',
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${name} | LuxProfile`,
+        title: `${name} | PlacerLux`,
         description,
         images: photo ? [photo] : [],
       },
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     };
   } catch {
-    return { title: 'LuxProfile — Perfiles Profesionales' };
+    return { title: 'PlacerLux — Perfiles Profesionales' };
   }
 }
 

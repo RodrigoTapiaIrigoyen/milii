@@ -542,7 +542,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <h1 className="font-bold text-white text-lg">Admin Panel</h1>
-              <p className="text-xs text-dark-400">LuxProfile MX</p>
+              <p className="text-xs text-dark-400">PlacerLux</p>
             </div>
           </div>
 

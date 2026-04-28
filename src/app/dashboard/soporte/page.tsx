@@ -41,8 +41,8 @@ const SUPPORT_CONFIG: Record<Plan, {
       {
         icon: Mail,
         label: 'Email',
-        value: 'soporte@luxprofile.mx',
-        href: 'mailto:soporte@luxprofile.mx?subject=Soporte LuxProfile',
+        value: 'soporte@placerlux.lat',
+        href: 'mailto:soporte@placerlux.lat?subject=Soporte PlacerLux',
         description: 'Respuesta en 24–72 horas hábiles',
       },
     ],
@@ -66,8 +66,8 @@ const SUPPORT_CONFIG: Record<Plan, {
       {
         icon: Mail,
         label: 'Email',
-        value: 'soporte@luxprofile.mx',
-        href: 'mailto:soporte@luxprofile.mx?subject=Soporte Prioritario Premium',
+        value: 'soporte@placerlux.lat',
+        href: 'mailto:soporte@placerlux.lat?subject=Soporte Prioritario Premium',
         description: 'Respuesta prioritaria en menos de 24 horas',
       },
     ],
@@ -91,8 +91,8 @@ const SUPPORT_CONFIG: Record<Plan, {
       {
         icon: Mail,
         label: 'Email VIP',
-        value: 'vip@luxprofile.mx',
-        href: 'mailto:vip@luxprofile.mx?subject=Soporte VIP',
+        value: 'vip@placerlux.lat',
+        href: 'mailto:vip@placerlux.lat?subject=Soporte VIP',
         description: 'Email exclusivo con atención máxima prioridad',
       },
     ],
