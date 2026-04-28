@@ -106,7 +106,7 @@ export default function AnalyticsPage() {
     }
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: any) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('es-MX', { day: 'numeric', month: 'short' });
   };

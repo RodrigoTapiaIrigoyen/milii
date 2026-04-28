@@ -96,8 +96,9 @@ export async function verifyAuth(req: NextRequest) {
 
   await connectDB();
   const mongoose = await import('mongoose');
-  const User = mongoose.default.models.User || (await import('@/models/User')).default;
-  const user = await User.findById(payload.userId).select('-password');
+  const { User } = await import('@/models/User');
+  const UserModel = mongoose.default.models.User || User;
+  const user = await UserModel.findById(payload.userId).select('-password');
 
   if (!user) {
     return { authenticated: false, user: null };

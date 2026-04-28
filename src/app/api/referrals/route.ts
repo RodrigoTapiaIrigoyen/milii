@@ -6,23 +6,23 @@ import { getUserFromRequest } from '@/lib/auth';
 
 export async function GET(req: NextRequest) {
   try {
-    const currentUser = await getUserFromRequest(req);
-    if (!currentUser) {
+    const userId = await getUserFromRequest(req);
+    if (!userId) {
       return NextResponse.json({ error: 'No autenticado' }, { status: 401 });
     }
 
     await connectDB();
 
-    const user = await User.findById(currentUser.userId)
+    const user = await User.findById(userId)
       .select('referralCode referralCredit email')
-      .lean();
+      .lean() as { referralCode?: string; referralCredit?: number; email?: string } | null;
 
     if (!user) {
       return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 404 });
     }
 
     // Obtener todos los referidos de este usuario
-    const referrals = await Referral.find({ referrerId: currentUser.userId })
+    const referrals = await Referral.find({ referrerId: userId })
       .populate('referredUserId', 'email createdAt')
       .sort({ createdAt: -1 })
       .lean();

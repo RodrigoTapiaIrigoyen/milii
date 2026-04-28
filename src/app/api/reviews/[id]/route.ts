@@ -165,12 +165,12 @@ export async function POST(req: NextRequest, { params }: Params) {
     const wasUnhelpful = review.unhelpfulBy.includes(userId as any);
 
     if (wasHelpful) {
-      review.helpfulBy = review.helpfulBy.filter(id => id.toString() !== userId);
+      review.helpfulBy = review.helpfulBy.filter((id: any) => id.toString() !== userId);
       review.helpful = Math.max(0, review.helpful - 1);
     }
 
     if (wasUnhelpful) {
-      review.unhelpfulBy = review.unhelpfulBy.filter(id => id.toString() !== userId);
+      review.unhelpfulBy = review.unhelpfulBy.filter((id: any) => id.toString() !== userId);
       review.unhelpful = Math.max(0, review.unhelpful - 1);
     }
 
