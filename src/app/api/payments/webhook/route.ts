@@ -161,7 +161,7 @@ export async function POST(req: NextRequest) {
       // Programa de referidos: acreditar $100 al referidor
       // ================================================
       try {
-        const payingUser = await User.findById(refData.userId).select('referredBy').lean();
+        const payingUser = await User.findById(refData.userId).select('referredBy').lean() as { referredBy?: unknown } | null;
         if (payingUser?.referredBy) {
           // Buscar el referral pendiente (solo se premia UNA vez por usuario)
           const referral = await Referral.findOneAndUpdate(
