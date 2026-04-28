@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import { verifyAuth } from '@/lib/auth';
 import { User } from '@/models/User';
 import { Profile } from '@/models/Profile';
-import Payment from '@/models/Payment';
+import { Payment } from '@/models/Payment';
 import { Subscription } from '@/models/Subscription';
 
 export async function GET(req: NextRequest) {

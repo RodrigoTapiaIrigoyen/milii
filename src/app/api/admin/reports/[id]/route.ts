@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import { verifyAuth } from '@/lib/auth';
 import Report from '@/models/Report';
 import { Profile } from '@/models/Profile';
-import Sanction from '@/models/Sanction';
+import { Sanction } from '@/models/Sanction';
 import { createNotification } from '@/lib/shared/notifications';
 
 interface Params {
