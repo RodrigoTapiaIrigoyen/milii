@@ -10,8 +10,8 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const currentUser = await getUserFromRequest(req);
-    if (!currentUser) {
+    const userId = await getUserFromRequest(req);
+    if (!userId) {
       return NextResponse.json({ error: 'No autenticado' }, { status: 401 });
     }
 
@@ -19,7 +19,7 @@ export async function GET(
 
     const profile = await Profile.findOne({
       _id: params.id,
-      userId: currentUser.userId,
+      userId,
     })
       .select('-userId')
       .lean();
