@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-0: #f6f7fb;
+  --surface-1: #ffffff;
+  --surface-2: #eef1f7;
+}
+
+* {
+  @apply antialiased;
+}
+
+/* Evita el cursor de texto en elementos que no son contenido editable */
+body {
+  cursor: default;
+}
+
+button,
+a,
+label,
+nav,
+header,
+footer,
+[role="button"],
+[role="tab"],
+[role="menuitem"] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Headings y etiquetas UI no son seleccionables */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Texto de contenido sí es seleccionable */
+p,
+span,
+li,
+td,
+th,
+blockquote,
+article,
+section {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Inputs y textareas siempre editables */
+input,
+textarea,
+select,
+[contenteditable] {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+body {
+  @apply bg-dark-50 text-dark-900;
+  background-image:
+    radial-gradient(
+      circle at 15% -10%,
+      rgba(255, 46, 118, 0.16),
+      transparent 38%
+    ),
+    radial-gradient(circle at 85% 8%, rgba(17, 24, 39, 0.1), transparent 34%);
+  background-attachment: fixed;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.animate-rise-in {
+  animation: riseIn 0.7s ease-out both;
+}
+
+.animate-float-slow {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
+/* Gradientes */
+.gradient-brand {
+  @apply bg-gradient-to-r from-brand-600 via-brand-500 to-brand-400;
+}
+
+.gradient-dark {
+  @apply bg-gradient-to-r from-dark-900 to-dark-800;
+}
+
+/* Efectos de vidrio */
+.glass {
+  @apply backdrop-blur-xl bg-white/80 border border-white/20;
+}
+
+.glass-panel {
+  @apply border border-white/60 bg-white/80 backdrop-blur-xl shadow-xl shadow-dark-900/5;
+}
+
+.enterprise-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.2) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Botones */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition duration-200 bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-brand-500/35 hover:from-brand-700 hover:to-brand-600 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition duration-200 border border-dark-300/80 bg-white/70 text-dark-900 hover:bg-white active:scale-[0.98];
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition duration-200 border-2 border-brand-500 text-brand-600 hover:bg-brand-50;
+}
+
+/* Inputs */
+.input-field {
+  @apply w-full px-4 py-3 rounded-xl border border-dark-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition outline-none;
+}
+
+/* Cards */
+.card {
+  @apply bg-white rounded-2xl border border-dark-200 shadow-sm hover:shadow-md transition duration-200;
+}
+
+.card-elevated {
+  @apply bg-white rounded-2xl shadow-lg border border-dark-100;
+}
+
+/* Admin dark theme cards */
+.admin-card {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-slate-600/50 shadow-xl;
+}
+
+.admin-card-blue {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.7) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-blue-500/40 shadow-xl;
+}
+
+.admin-card-purple {
+  background: linear-gradient(
+    135deg,
+    rgba(88, 28, 135, 0.7) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-purple-500/40 shadow-xl;
+}
+
+.admin-card-green {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 78, 59, 0.7) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-emerald-500/40 shadow-xl;
+}
+
+.admin-card-amber {
+  background: linear-gradient(
+    135deg,
+    rgba(120, 53, 15, 0.7) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-amber-500/40 shadow-xl;
+}
+
+.admin-card-red {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 29, 29, 0.7) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-red-500/40 shadow-xl;
+}
+
+.admin-table {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  @apply rounded-2xl border border-slate-600/40 shadow-xl overflow-hidden;
+}
+
+.admin-table thead {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 1) 0%,
+    rgba(15, 23, 42, 1) 100%
+  );
+  @apply border-b border-slate-600/60;
+}
+
+.admin-table tbody tr {
+  @apply border-b border-slate-700/40 transition-colors duration-150;
+}
+
+.admin-table tbody tr:last-child {
+  @apply border-b-0;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(51, 65, 85, 0.4);
+}
