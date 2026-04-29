@@ -232,24 +232,25 @@ export default function EditarPerfilPage() {
 
   const removePhoto = async (index: number) => {
     if (!profile) return;
-    // Actualiza el estado local
-    const newPhotos = profile.photos.filter((_, i) => i !== index);
-    setProfile({
-      ...profile,
-      photos: newPhotos
-    });
-    // Llama al endpoint para limpiar el array en backend
+    const photoUrl = profile.photos[index];
+    // 1. Eliminar la foto en backend (Cloudinary y MongoDB)
+    try {
+      await fetch(`/api/upload?url=${encodeURIComponent(photoUrl)}`, { method: 'DELETE' });
+    } catch (e) {
+      // Silenciar error, continuar flujo
+    }
+    // 2. Limpiar el array en backend
     try {
       await fetch('/api/profiles/my-profile/clean-photos', { method: 'PATCH' });
-      // Fetch del perfil actualizado para sincronizar el array real
+    } catch (e) {}
+    // 3. Fetch del perfil actualizado para sincronizar el array real
+    try {
       const res = await fetch('/api/profiles/my-profile');
       if (res.ok) {
         const data = await res.json();
         setProfile(data.profile);
       }
-    } catch (e) {
-      // Silenciar error, solo para asegurar limpieza
-    }
+    } catch (e) {}
   };
 
   const handleSave = async () => {
