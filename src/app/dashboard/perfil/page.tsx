@@ -230,12 +230,20 @@ export default function EditarPerfilPage() {
     }
   };
 
-  const removePhoto = (index: number) => {
+  const removePhoto = async (index: number) => {
     if (!profile) return;
+    // Actualiza el estado local
+    const newPhotos = profile.photos.filter((_, i) => i !== index);
     setProfile({
       ...profile,
-      photos: profile.photos.filter((_, i) => i !== index)
+      photos: newPhotos
     });
+    // Llama al endpoint para limpiar el array en backend
+    try {
+      await fetch('/api/profiles/my-profile/clean-photos', { method: 'PATCH' });
+    } catch (e) {
+      // Silenciar error, solo para asegurar limpieza
+    }
   };
 
   const handleSave = async () => {
