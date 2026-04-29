@@ -138,6 +138,12 @@ export async function DELETE(req: NextRequest) {
     // Eliminar de Cloudinary
     await deleteImage(publicId);
 
+    // Eliminar la URL de la foto del array 'photos' en el perfil
+    await Profile.findOneAndUpdate(
+      { userId },
+      { $pull: { photos: { $regex: publicId } } }
+    );
+
     return NextResponse.json(
       { message: 'Imagen eliminada exitosamente' },
       { status: 200 }

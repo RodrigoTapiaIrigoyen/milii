@@ -87,5 +87,27 @@ export default async function PerfilPublicoPage({ params }: Props) {
   // Serializar el documento Mongoose (ObjectIds → strings)
   const serialized = JSON.parse(JSON.stringify(profile));
 
-  return <PerfilClientPage initialProfile={serialized} />;
+  // JSON-LD para SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": serialized.name,
+    "jobTitle": "Escort",
+    "gender": serialized.gender,
+    "age": serialized.age,
+    "description": serialized.description,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": serialized.location?.city || undefined,
+      "addressRegion": serialized.location?.state || undefined,
+      "addressCountry": "MX"
+    },
+    "image": serialized.photos?.[0] || undefined,
+    "url": `${process.env.NEXT_PUBLIC_APP_URL || 'https://placerlux.lat'}/perfiles/${params.id}`
+  };
+
+  return <>
+    <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <PerfilClientPage initialProfile={serialized} />
+  </>;
 }
