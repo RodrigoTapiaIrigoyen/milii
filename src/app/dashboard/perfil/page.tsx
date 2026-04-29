@@ -241,6 +241,12 @@ export default function EditarPerfilPage() {
     // Llama al endpoint para limpiar el array en backend
     try {
       await fetch('/api/profiles/my-profile/clean-photos', { method: 'PATCH' });
+      // Fetch del perfil actualizado para sincronizar el array real
+      const res = await fetch('/api/profiles/my-profile');
+      if (res.ok) {
+        const data = await res.json();
+        setProfile(data.profile);
+      }
     } catch (e) {
       // Silenciar error, solo para asegurar limpieza
     }
