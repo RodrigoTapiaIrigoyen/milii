@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { connectDB } from '@/lib/db';
 import { Profile } from '@/models/Profile';
-import PerfilClientPage from '../[id]/PerfilClientPage';
+import PerfilClientPage from '../../[id]/PerfilClientPage';
 
 interface Props {
   params: { estado: string };
@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `${appUrl}/perfiles/estado/${params.estado}`,
+      canonical: `${appUrl}/perfiles/por-estado/${params.estado}`,
     },
     openGraph: {
       title,
       description,
-      url: `${appUrl}/perfiles/estado/${params.estado}`,
+      url: `${appUrl}/perfiles/por-estado/${params.estado}`,
       type: 'website',
       siteName: 'PlacerLux',
     },
