@@ -88,7 +88,7 @@ export async function PUT(
     if (data.description !== undefined) profile.description = data.description;
     if (data.whatsapp !== undefined) profile.whatsapp = data.whatsapp;
     if (data.telegram !== undefined) profile.telegram = data.telegram;
-    if (data.photos) profile.photos = data.photos;
+    if (data.photos !== undefined) profile.photos = data.photos;
     if (data.services) profile.services = data.services;
 
     if (data.location) {

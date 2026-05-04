@@ -68,7 +68,7 @@ export async function PUT(req: NextRequest) {
     if (data.age) profile.age = data.age;
     if (data.description !== undefined) profile.description = data.description;
     if (data.whatsapp !== undefined) profile.whatsapp = data.whatsapp;
-    if (data.photos) profile.photos = data.photos;
+    if (data.photos !== undefined) profile.photos = data.photos;
 
     if (data.pricing) {
       profile.pricing = {

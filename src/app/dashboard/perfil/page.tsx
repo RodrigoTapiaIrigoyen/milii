@@ -233,17 +233,31 @@ export default function EditarPerfilPage() {
   const removePhoto = async (index: number) => {
     if (!profile) return;
     const photoUrl = profile.photos[index];
-    // 1. Eliminar la foto en backend (Cloudinary y MongoDB)
-    try {
-      await fetch(`/api/upload?url=${encodeURIComponent(photoUrl)}`, { method: 'DELETE' });
-    } catch (e) {
-      // Silenciar error, continuar flujo
+    const isCloudinary = photoUrl.startsWith('http') && photoUrl.includes('cloudinary');
+
+    if (isCloudinary) {
+      // Eliminar de Cloudinary y MongoDB via DELETE
+      try {
+        await fetch(`/api/upload?url=${encodeURIComponent(photoUrl)}`, { method: 'DELETE' });
+      } catch (e) {}
+    } else {
+      // Es una ruta local: eliminar directamente del array en MongoDB via PUT
+      const newPhotos = profile.photos.filter((_, i) => i !== index);
+      try {
+        await fetch(`/api/profiles/${profile._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ photos: newPhotos }),
+        });
+      } catch (e) {}
     }
-    // 2. Limpiar el array en backend
+
+    // Limpiar el array en backend (elimina vacíos/duplicados)
     try {
       await fetch('/api/profiles/my-profile/clean-photos', { method: 'PATCH' });
     } catch (e) {}
-    // 3. Fetch del perfil actualizado para sincronizar el array real
+
+    // Sincronizar el perfil actualizado desde el backend
     try {
       const res = await fetch('/api/profiles/my-profile');
       if (res.ok) {
