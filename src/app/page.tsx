@@ -70,7 +70,7 @@ export default async function Home() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
         <nav className="flex items-center justify-between py-6 animate-fade-in">
           <div className="flex items-center gap-2">
-            <img src="/logo.svg" alt="PlacerLux" height="36" style={{ height: '36px' }} />
+            <img src="/logo.svg" alt="PlacerLux" height="44" style={{ height: '44px' }} />
           </div>
           <div className="flex items-center gap-3">
             <Link href="/perfiles" className="text-dark-700 hover:text-brand-600 font-medium transition">

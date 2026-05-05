@@ -157,7 +157,7 @@ export default function DashboardPage() {
       <nav className="bg-white border-b border-dark-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.svg" alt="PlacerLux" height="36" style={{ height: '36px' }} />
+            <img src="/logo.svg" alt="PlacerLux" height="44" style={{ height: '44px' }} />
           </Link>
           <div className="flex items-center gap-4">
             {user?.role === 'admin' && (

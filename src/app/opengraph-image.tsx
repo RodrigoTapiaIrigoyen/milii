@@ -47,8 +47,8 @@ export default function OgImage() {
         />
 
         {/* Icono diamante */}
-        <div style={{ display: 'flex', marginBottom: 32 }}>
-          <svg width="80" height="80" viewBox="0 0 32 32" fill="none">
+        <div style={{ display: 'flex', marginBottom: 40 }}>
+          <svg width="120" height="120" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="#1f2937"/>
             <polygon points="16,4 23,12 16,28 9,12" fill="#ff2e76" opacity="0.2"/>
             <polygon points="16,7 21,13 16,25 11,13" fill="#ff2e76" opacity="0.5"/>
@@ -59,10 +59,10 @@ export default function OgImage() {
 
         {/* Nombre */}
         <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: 20 }}>
-          <span style={{ fontSize: 88, fontWeight: 800, color: 'white', letterSpacing: '-3px' }}>
+          <span style={{ fontSize: 110, fontWeight: 800, color: 'white', letterSpacing: '-3px' }}>
             Placer
           </span>
-          <span style={{ fontSize: 88, fontWeight: 800, color: '#ff2e76', letterSpacing: '-3px' }}>
+          <span style={{ fontSize: 110, fontWeight: 800, color: '#ff2e76', letterSpacing: '-3px' }}>
             Lux
           </span>
         </div>
@@ -70,7 +70,7 @@ export default function OgImage() {
         {/* Tagline */}
         <div
           style={{
-            fontSize: 28,
+            fontSize: 36,
             color: '#9ca3af',
             letterSpacing: '4px',
             textTransform: 'uppercase',
@@ -83,7 +83,7 @@ export default function OgImage() {
         {/* URL */}
         <div
           style={{
-            fontSize: 22,
+            fontSize: 28,
             color: '#ff2e76',
             opacity: 0.8,
           }}
