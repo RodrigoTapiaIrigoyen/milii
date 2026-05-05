@@ -370,6 +370,7 @@ export default function ConfiguracionPage() {
               </label>
               <input
                 type="password"
+                autoComplete="current-password"
                 value={emailPassword}
                 onChange={(e) => setEmailPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-dark-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition"
@@ -410,6 +411,7 @@ export default function ConfiguracionPage() {
               <div className="relative">
                 <input
                   type={showPasswords ? 'text' : 'password'}
+                  autoComplete="current-password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-dark-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition"
@@ -423,6 +425,7 @@ export default function ConfiguracionPage() {
               </label>
               <input
                 type={showPasswords ? 'text' : 'password'}
+                autoComplete="new-password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-dark-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition"
@@ -435,6 +438,7 @@ export default function ConfiguracionPage() {
               </label>
               <input
                 type={showPasswords ? 'text' : 'password'}
+                autoComplete="new-password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-dark-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition"
@@ -585,6 +589,7 @@ export default function ConfiguracionPage() {
                 </label>
                 <input
                   type="password"
+                  autoComplete="current-password"
                   value={deletePassword}
                   onChange={(e) => setDeletePassword(e.target.value)}
                   className="w-full px-4 py-2 rounded-xl border border-dark-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition"

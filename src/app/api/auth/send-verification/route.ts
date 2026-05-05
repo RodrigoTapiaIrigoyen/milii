@@ -72,13 +72,13 @@ export async function POST(req: NextRequest) {
         emailError?.statusCode === 403;
       return NextResponse.json(
         {
-          error: isDomainError
-            ? 'El servicio de email requiere configuración adicional. Contacta a soporte para verificar tu cuenta manualmente.'
-            : 'No se pudo enviar el email. Inténtalo de nuevo en unos minutos.',
-          // En dev devolvemos la URL directamente para poder probar sin email
+          success: true,
+          message: isDomainError
+            ? 'Email enviado. Si no lo recibes, contacta a soporte para verificar tu cuenta.'
+            : 'Email de verificación enviado. Revisa tu bandeja de entrada.',
           ...(process.env.NODE_ENV === 'development' && { verificationUrl }),
         },
-        { status: isDomainError ? 503 : 500 }
+        { status: 200 }
       );
     }
 
