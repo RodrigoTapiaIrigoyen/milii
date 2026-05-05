@@ -40,6 +40,12 @@ export const metadata: Metadata = {
     description:
       'Encuentra perfiles premium verificados en México. Perfiles reales, contacto directo.',
   },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,
