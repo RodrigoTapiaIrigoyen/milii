@@ -65,7 +65,7 @@ const SERVICIOS_DISPONIBLES = [
     'Bodas y Celebraciones',
     'Cenas de Negocios',
     'Viajes de Negocios',
-    'Eventos Sociales',
+    'Scort',
 ];
 
 const GENEROS_DISPONIBLES = [

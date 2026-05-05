@@ -15,6 +15,15 @@ export async function POST(req: NextRequest) {
   try {
     await connectDB();
 
+    // Verificar que el token de MercadoPago esté configurado
+    if (!process.env.MERCADOPAGO_ACCESS_TOKEN) {
+      console.error('MERCADOPAGO_ACCESS_TOKEN no está configurado');
+      return NextResponse.json(
+        { error: 'Pasarela de pago no configurada. Contacta al administrador.' },
+        { status: 503 }
+      );
+    }
+
     const userId = await getUserFromRequest(req);
     if (!userId) {
       return NextResponse.json(
@@ -98,10 +107,10 @@ export async function POST(req: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error al crear preferencia de pago:', error);
     return NextResponse.json(
-      { error: 'Error al crear preferencia de pago' },
+      { error: 'Error al crear preferencia de pago', detail: error?.message || String(error) },
       { status: 500 }
     );
   }

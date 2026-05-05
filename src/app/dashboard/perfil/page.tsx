@@ -74,7 +74,7 @@ const SERVICIOS_DISPONIBLES = [
   'Reflexología',
   'Aromaterapia',
   'Acompañamiento a Eventos',
-  'Eventos Corporativos',
+  'Scort',
   'Bodas y Celebraciones',
   'Cenas de Negocios',
   'Viajes de Negocios',
