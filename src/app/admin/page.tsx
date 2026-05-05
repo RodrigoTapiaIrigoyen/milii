@@ -32,6 +32,8 @@ import {
   MessageSquare,
   RefreshCw,
   Send,
+  Menu,
+  X,
 } from 'lucide-react';
 
 interface User {
@@ -170,6 +172,7 @@ export default function AdminDashboardPage() {
   const [adminNote, setAdminNote] = useState('');
   const [sendingReply, setSendingReply] = useState(false);
   const [savingNote, setSavingNote] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     checkAdminAccess();
@@ -533,22 +536,38 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900">
+      {/* Overlay móvil */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-30 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 w-64 bg-dark-800/50 backdrop-blur-xl border-r border-dark-700">
+      <div className={`fixed inset-y-0 left-0 w-64 bg-dark-800/95 backdrop-blur-xl border-r border-dark-700 z-40 transform transition-transform duration-300 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+      }`}>
         <div className="p-6">
           <div className="flex items-center gap-3 mb-8">
             <div className="bg-gradient-to-r from-brand-500 to-purple-500 p-3 rounded-xl">
               <Shield className="w-6 h-6 text-white" />
             </div>
-            <div>
+            <div className="flex-1">
               <h1 className="font-bold text-white text-lg">Admin Panel</h1>
               <p className="text-xs text-dark-400">PlacerLux</p>
             </div>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="md:hidden text-dark-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           <nav className="space-y-2">
             <button
-              onClick={() => setCurrentTab('overview')}
+              onClick={() => { setCurrentTab('overview'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'overview'
                   ? 'bg-brand-500 text-white shadow-lg'
@@ -560,7 +579,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('users')}
+              onClick={() => { setCurrentTab('users'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'users'
                   ? 'bg-brand-500 text-white shadow-lg'
@@ -572,7 +591,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('profiles')}
+              onClick={() => { setCurrentTab('profiles'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'profiles'
                   ? 'bg-brand-500 text-white shadow-lg'
@@ -584,7 +603,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('payments')}
+              onClick={() => { setCurrentTab('payments'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'payments'
                   ? 'bg-brand-500 text-white shadow-lg'
@@ -596,7 +615,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('moderation')}
+              onClick={() => { setCurrentTab('moderation'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'moderation'
                   ? 'bg-brand-500 text-white shadow-lg'
@@ -608,7 +627,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('review')}
+              onClick={() => { setCurrentTab('review'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'review'
                   ? 'bg-amber-500 text-white shadow-lg'
@@ -625,7 +644,7 @@ export default function AdminDashboardPage() {
             </button>
 
             <button
-              onClick={() => setCurrentTab('support')}
+              onClick={() => { setCurrentTab('support'); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 currentTab === 'support'
                   ? 'bg-green-600 text-white shadow-lg'
@@ -658,7 +677,22 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Main Content */}
-      <div className="ml-64 p-8">
+      <div className="md:ml-64 p-4 md:p-8">
+        {/* Barra superior móvil */}
+        <div className="flex items-center gap-4 mb-6 md:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 rounded-xl bg-dark-700 text-white"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="bg-gradient-to-r from-brand-500 to-purple-500 p-2 rounded-lg">
+              <Shield className="w-4 h-4 text-white" />
+            </div>
+            <span className="font-bold text-white">Admin Panel</span>
+          </div>
+        </div>
         {/* Overview Tab */}
         {currentTab === 'overview' && stats && (
           <div className="space-y-8">

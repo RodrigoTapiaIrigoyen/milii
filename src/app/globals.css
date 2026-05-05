@@ -266,6 +266,20 @@ body {
   @apply rounded-2xl border border-slate-600/40 shadow-xl overflow-hidden;
 }
 
+.admin-table > table {
+  @apply w-full;
+}
+
+/* Scroll horizontal en móvil para tablas admin */
+@media (max-width: 768px) {
+  .admin-table {
+    overflow-x: auto;
+  }
+  .admin-table table {
+    min-width: 600px;
+  }
+}
+
 .admin-table thead {
   background: linear-gradient(
     90deg,
