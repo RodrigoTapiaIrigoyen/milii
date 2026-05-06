@@ -12,6 +12,7 @@ export default function PlanesPage() {
   const [pageLoading, setPageLoading] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [profileId, setProfileId] = useState<string | null>(null);
+  const [trialUsed, setTrialUsed] = useState(false);
 
   useEffect(() => {
     checkAccessAndLoad();
@@ -29,10 +30,17 @@ export default function PlanesPage() {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch('/api/profiles/my-profile');
-      if (res.ok) {
-        const data = await res.json();
+      const [profileRes, subRes] = await Promise.all([
+        fetch('/api/profiles/my-profile'),
+        fetch('/api/subscriptions/trial-status'),
+      ]);
+      if (profileRes.ok) {
+        const data = await profileRes.json();
         setProfileId(data.profile._id);
+      }
+      if (subRes.ok) {
+        const subData = await subRes.json();
+        setTrialUsed(subData.trialUsed);
       }
     } catch (error) {
       console.error('Error al cargar perfil:', error);
@@ -215,19 +223,25 @@ export default function PlanesPage() {
                 ))}
               </ul>
 
-              <button
-                onClick={() => handleSubscribe(plan.id, plan.precio)}
-                disabled={loading && selectedPlan === plan.id}
-                className={`btn-primary w-full ${
-                  loading && selectedPlan === plan.id ? 'opacity-50' : ''
-                }`}
-              >
-                {loading && selectedPlan === plan.id
-                  ? 'Procesando...'
-                  : plan.precio === 0
-                  ? 'Comenzar Gratis'
-                  : 'Suscribirse'}
-              </button>
+              {plan.precio === 0 && trialUsed ? (
+                <div className="w-full text-center py-3 px-4 rounded-xl bg-dark-100 text-dark-500 text-sm font-medium">
+                  Prueba ya utilizada
+                </div>
+              ) : (
+                <button
+                  onClick={() => handleSubscribe(plan.id, plan.precio)}
+                  disabled={loading && selectedPlan === plan.id}
+                  className={`btn-primary w-full ${
+                    loading && selectedPlan === plan.id ? 'opacity-50' : ''
+                  }`}
+                >
+                  {loading && selectedPlan === plan.id
+                    ? 'Procesando...'
+                    : plan.precio === 0
+                    ? 'Comenzar Gratis'
+                    : 'Suscribirse'}
+                </button>
+              )}
             </div>
           ))}
         </div>

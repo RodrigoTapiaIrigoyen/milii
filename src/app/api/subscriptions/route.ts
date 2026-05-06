@@ -80,6 +80,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Verificar si el plan es free y el usuario ya usó el trial
+    if (plan === 'free') {
+      const previousTrial = await Subscription.findOne({ userId, plan: 'free' });
+      if (previousTrial) {
+        return NextResponse.json(
+          { error: 'Ya utilizaste tu período de prueba gratuito. Elige un plan Premium o VIP para continuar.' },
+          { status: 409 }
+        );
+      }
+    }
+
     const startDate = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + selectedPlan.days);
