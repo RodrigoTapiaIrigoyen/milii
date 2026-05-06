@@ -50,6 +50,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Verificar que el email esté confirmado
+    if (!user.emailVerified) {
+      return NextResponse.json(
+        {
+          error: 'Debes verificar tu correo electrónico antes de iniciar sesión. Revisa tu bandeja de entrada.',
+          code: 'EMAIL_NOT_VERIFIED',
+          email: user.email,
+        },
+        { status: 403 }
+      );
+    }
+
     // Verificar que la cuenta no esté suspendida o baneada
     if (user.status === 'suspended') {
       return NextResponse.json(

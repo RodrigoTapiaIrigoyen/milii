@@ -123,9 +123,9 @@ export async function POST(req: NextRequest) {
       // No fallamos el registro si el email falla — el usuario puede reenviar desde el dashboard
     }
 
-    // Generar token JWT y guardar en cookie
-    const token = await createToken(user._id.toString(), user.role || 'user');
-    await setAuthCookie(token);
+    // NO se inicia sesión automáticamente — el usuario debe verificar su email primero
+    // const token = await createToken(user._id.toString(), user.role || 'user');
+    // await setAuthCookie(token);
 
     // Crear notificación de bienvenida
     try {

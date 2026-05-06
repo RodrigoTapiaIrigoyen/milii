@@ -4,34 +4,51 @@ import { User } from '@/models/User';
 import { EmailVerification } from '@/models/EmailVerification';
 import { getUserFromRequest } from '@/lib/auth';
 import { sendVerificationEmail } from '@/lib/email';
+import { checkRateLimit } from '@/lib/rateLimit';
 import crypto from 'crypto';
 
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
 
-    const userId = await getUserFromRequest(req);
-    if (!userId) {
+    // Rate limiting por IP para evitar spam
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      req.headers.get('x-real-ip') ||
+      'unknown';
+    const rl = checkRateLimit(`send-verification:${ip}`, 5, 15 * 60 * 1000);
+    if (!rl.allowed) {
       return NextResponse.json(
-        { error: 'No autenticado' },
-        { status: 401 }
+        { error: 'Demasiadas solicitudes. Intenta de nuevo en 15 minutos.' },
+        { status: 429 }
       );
     }
 
-    // Buscar usuario
-    const user = await User.findById(userId);
+    // Aceptar email del body (sin auth) O usar el usuario autenticado
+    const body = await req.json().catch(() => ({}));
+    let user: any = null;
+
+    const userId = await getUserFromRequest(req);
+    if (userId) {
+      user = await User.findById(userId);
+    } else if (body.email) {
+      // Reenvío desde login sin estar autenticado
+      user = await User.findOne({ email: body.email.toLowerCase().trim() });
+    }
+
     if (!user) {
+      // Respuesta genérica para no revelar si el email existe
       return NextResponse.json(
-        { error: 'Usuario no encontrado' },
-        { status: 404 }
+        { success: true, message: 'Si el correo existe, recibirás un enlace de verificación.' },
+        { status: 200 }
       );
     }
 
     // Verificar si ya está verificado
     if (user.emailVerified) {
       return NextResponse.json(
-        { error: 'El email ya está verificado' },
-        { status: 400 }
+        { success: true, message: 'Tu correo ya está verificado. Puedes iniciar sesión.' },
+        { status: 200 }
       );
     }
 

@@ -3,12 +3,15 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, Loader2, Mail } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [emailNotVerified, setEmailNotVerified] = useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
+  const [resendSent, setResendSent] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -35,7 +38,12 @@ export default function LoginPage() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Error al ingresar');
+        if (data.code === 'EMAIL_NOT_VERIFIED') {
+          setEmailNotVerified(true);
+        } else {
+          throw new Error(data.error || 'Error al ingresar');
+        }
+        return;
       }
 
       const data = await res.json();
@@ -51,9 +59,50 @@ export default function LoginPage() {
     }
   };
 
+  const handleResendVerification = async () => {
+    setResendLoading(true);
+    try {
+      await fetch('/api/auth/send-verification', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: formData.email }),
+      });
+      setResendSent(true);
+    } catch {
+      // noop
+    } finally {
+      setResendLoading(false);
+    }
+  };
+
   return (
     <div className="card-elevated p-8 animate-fade-in-up">
       <h2 className="text-2xl font-bold text-dark-900 mb-6">Inicia Sesión</h2>
+
+      {emailNotVerified && (
+        <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+          <div className="flex gap-3 mb-3">
+            <Mail className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-amber-800 font-medium text-sm">Verifica tu correo electrónico</p>
+              <p className="text-amber-700 text-sm mt-1">
+                Enviamos un enlace de verificación a <strong>{formData.email}</strong>. Revisa tu bandeja de entrada (y spam).
+              </p>
+            </div>
+          </div>
+          {resendSent ? (
+            <p className="text-sm text-green-700 font-medium">✓ Correo reenviado correctamente</p>
+          ) : (
+            <button
+              onClick={handleResendVerification}
+              disabled={resendLoading}
+              className="text-sm text-amber-700 underline font-medium disabled:opacity-50"
+            >
+              {resendLoading ? 'Enviando...' : 'Reenviar correo de verificación'}
+            </button>
+          )}
+        </div>
+      )}
 
       {error && (
         <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3">

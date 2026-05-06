@@ -65,9 +65,6 @@ export default function RegisterPage() {
       }
 
       setSuccess(true);
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error desconocido');
     } finally {
@@ -78,9 +75,20 @@ export default function RegisterPage() {
   if (success) {
     return (
       <div className="card-elevated p-8 text-center animate-fade-in-up">
-        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-        <h2 className="text-2xl font-bold text-dark-900 mb-2">¡Registro Exitoso!</h2>
-        <p className="text-dark-600 mb-4">Redirigiendo a tu dashboard...</p>
+        <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle className="w-9 h-9 text-amber-500" />
+        </div>
+        <h2 className="text-2xl font-bold text-dark-900 mb-2">¡Revisa tu correo!</h2>
+        <p className="text-dark-600 mb-2">
+          Enviamos un enlace de verificación a:
+        </p>
+        <p className="font-semibold text-dark-900 mb-4">{formData.email}</p>
+        <p className="text-sm text-dark-500 mb-6">
+          Haz clic en el enlace del correo para activar tu cuenta. Revisa también tu carpeta de spam.
+        </p>
+        <Link href="/login" className="btn-primary inline-block">
+          Ir al inicio de sesión
+        </Link>
       </div>
     );
   }
