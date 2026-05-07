@@ -18,13 +18,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const data = await req.json();
-    const { subscriptionId } = data;
+    let subscriptionId: string | undefined;
+    try {
+      const data = await req.json();
+      subscriptionId = data?.subscriptionId;
+    } catch {
+      // body vacío, buscar por userId
+    }
 
-    const subscription = await Subscription.findOne({
-      _id: subscriptionId,
-      userId,
-    });
+    const query: Record<string, unknown> = { userId, status: 'active' };
+    if (subscriptionId) query._id = subscriptionId;
+
+    const subscription = await Subscription.findOne(query);
 
     if (!subscription) {
       return NextResponse.json(

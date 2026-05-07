@@ -97,7 +97,11 @@ export default function SuscripcionPage() {
     if (!confirm('¿Estás seguro que deseas cancelar tu suscripción? El plan seguirá activo hasta la fecha de vencimiento.')) return;
     setCancelling(true);
     try {
-      const res = await fetch('/api/subscriptions/cancel', { method: 'POST' });
+      const res = await fetch('/api/subscriptions/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscriptionId: subscription?._id }),
+      });
       if (res.ok) {
         await fetchSubscription();
       } else {
