@@ -57,6 +57,34 @@ export async function GET(request: NextRequest) {
   }
 }
 
+// DELETE - Eliminar todas las notificaciones del usuario
+export async function DELETE(request: NextRequest) {
+  try {
+    await connectDB();
+
+    const userId = await getUserFromRequest(request);
+    if (!userId) {
+      return NextResponse.json(
+        { error: 'No autenticado' },
+        { status: 401 }
+      );
+    }
+
+    const result = await Notification.deleteMany({ userId });
+
+    return NextResponse.json({
+      success: true,
+      deleted: result.deletedCount,
+    });
+  } catch (error) {
+    console.error('Error al eliminar notificaciones:', error);
+    return NextResponse.json(
+      { error: 'Error al eliminar notificaciones' },
+      { status: 500 }
+    );
+  }
+}
+
 // POST - Crear notificación (solo para uso interno/admin)
 export async function POST(request: NextRequest) {
   try {

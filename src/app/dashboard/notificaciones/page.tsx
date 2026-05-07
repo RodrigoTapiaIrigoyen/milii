@@ -22,6 +22,7 @@ export default function NotificationsPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
   const [markingAllRead, setMarkingAllRead] = useState(false);
+  const [deletingAll, setDeletingAll] = useState(false);
 
   useEffect(() => {
     fetchNotifications();
@@ -107,6 +108,22 @@ export default function NotificationsPage() {
       console.error('Error al marcar todas como leídas:', error);
     } finally {
       setMarkingAllRead(false);
+    }
+  };
+
+  const deleteAllNotifications = async () => {
+    if (!confirm('¿Eliminar todas las notificaciones? Esta acción no se puede deshacer.')) return;
+    setDeletingAll(true);
+    try {
+      const res = await fetch('/api/notifications', { method: 'DELETE' });
+      if (res.ok) {
+        setNotifications([]);
+        refreshUnreadCount();
+      }
+    } catch (error) {
+      console.error('Error al eliminar todas:', error);
+    } finally {
+      setDeletingAll(false);
     }
   };
 
@@ -204,20 +221,36 @@ export default function NotificationsPage() {
           )}
         </div>
 
-        {unreadCount > 0 && (
-          <button
-            onClick={markAllAsRead}
-            disabled={markingAllRead}
-            className="flex items-center gap-2 px-4 py-2 bg-luxury-500 text-white rounded-lg hover:bg-luxury-600 transition disabled:opacity-50"
-          >
-            {markingAllRead ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <CheckCheck className="w-4 h-4" />
-            )}
-            Marcar todas como leídas
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {unreadCount > 0 && (
+            <button
+              onClick={markAllAsRead}
+              disabled={markingAllRead}
+              className="flex items-center gap-2 px-4 py-2 bg-luxury-500 text-white rounded-lg hover:bg-luxury-600 transition disabled:opacity-50"
+            >
+              {markingAllRead ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <CheckCheck className="w-4 h-4" />
+              )}
+              Marcar todas como leídas
+            </button>
+          )}
+          {notifications.length > 0 && (
+            <button
+              onClick={deleteAllNotifications}
+              disabled={deletingAll}
+              className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-lg hover:bg-red-100 transition disabled:opacity-50"
+            >
+              {deletingAll ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Trash2 className="w-4 h-4" />
+              )}
+              Eliminar todas
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Filtros */}
