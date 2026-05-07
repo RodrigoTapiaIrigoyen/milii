@@ -551,7 +551,7 @@ export default async function Home() {
                 Preguntas Frecuentes
               </Link>
               <span>•</span>
-              <a href="mailto:soporte@placerlux.lat" className="hover:text-brand-600 transition">
+              <a href="mailto:staioirish@gmail.com" className="hover:text-brand-600 transition">
                 Contacto
               </a>
             </div>

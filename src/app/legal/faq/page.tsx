@@ -96,7 +96,7 @@ const faqs: FAQ[] = [
   {
     category: 'Planes y Pagos',
     question: '¿Puedo obtener un reembolso?',
-    answer: 'Generalmente los pagos no son reembolsables, excepto en casos especiales evaluados individualmente. Si tienes algún problema con tu pago, contáctanos a soporte@placerlux.lat.',
+    answer: 'Generalmente los pagos no son reembolsables, excepto en casos especiales evaluados individualmente. Si tienes algún problema con tu pago, contáctanos a staioirish@gmail.com.',
   },
 
   // Búsqueda y Contacto
@@ -137,7 +137,7 @@ const faqs: FAQ[] = [
   {
     category: 'Soporte',
     question: '¿Cómo contacto a soporte?',
-    answer: 'Puedes contactarnos por email a soporte@placerlux.lat o a través del formulario de contacto. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
+    answer: 'Puedes contactarnos por WhatsApp al +52 566 297 2039 o por email a staioirish@gmail.com. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
   },
   {
     category: 'Soporte',
@@ -180,7 +180,7 @@ export default function FAQPage() {
         <div className="card-elevated p-6 mb-8 text-center">
           <p className="text-dark-700">
             Encuentra respuestas rápidas a las preguntas más comunes sobre PlacerLux. 
-            Si no encuentras lo que buscas, no dudes en <Link href="mailto:soporte@placerlux.lat" className="text-brand-600 hover:text-brand-700 font-medium">contactarnos</Link>.
+            Si no encuentras lo que buscas, no dudes en <Link href="mailto:staioirish@gmail.com" className="text-brand-600 hover:text-brand-700 font-medium">contactarnos</Link>.
           </p>
         </div>
 
@@ -246,7 +246,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="mailto:soporte@placerlux.lat"
+              href="mailto:staioirish@gmail.com"
               className="btn-primary inline-flex items-center justify-center gap-2"
             >
               Enviar Email

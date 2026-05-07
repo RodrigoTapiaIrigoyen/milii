@@ -643,8 +643,8 @@ export default function PublicarPage() {
           </div>
           <p className="mt-6 text-sm text-brand-200">
             ¿Tienes dudas?{' '}
-            <a href="mailto:soporte@placerlux.lat" className="underline hover:text-white transition">
-              Escríbenos a soporte@placerlux.lat
+            <a href="mailto:staioirish@gmail.com" className="underline hover:text-white transition">
+              Escríbenos a staioirish@gmail.com
             </a>
           </p>
         </div>
