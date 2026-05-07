@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Check, Loader2 } from 'lucide-react';
+import { Check, Loader2, Tag, X, CheckCircle } from 'lucide-react';
 import NotificationBell from '@/components/shared/NotificationBell';
 
 export default function PlanesPage() {
@@ -13,6 +13,11 @@ export default function PlanesPage() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [profileId, setProfileId] = useState<string | null>(null);
   const [trialUsed, setTrialUsed] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponValid, setCouponValid] = useState<null | { plan: string; months: number; description: string }>(null);
+  const [couponError, setCouponError] = useState('');
+  const [couponApplied, setCouponApplied] = useState(false);
 
   useEffect(() => {
     checkAccessAndLoad();
@@ -96,6 +101,53 @@ export default function PlanesPage() {
       color: 'yellow',
     },
   ];
+
+  const handleValidateCoupon = async () => {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true);
+    setCouponError('');
+    setCouponValid(null);
+    try {
+      const res = await fetch('/api/coupons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setCouponValid(data);
+      } else {
+        setCouponError(data.error || 'Cupón inválido');
+      }
+    } catch {
+      setCouponError('Error al validar el cupón');
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const handleApplyCoupon = async () => {
+    if (!profileId || !couponValid) return;
+    setCouponLoading(true);
+    try {
+      const res = await fetch('/api/coupons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode, action: 'apply', profileId }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setCouponApplied(true);
+        setTimeout(() => router.push('/dashboard?subscription=success'), 2000);
+      } else {
+        setCouponError(data.error || 'Error al aplicar el cupón');
+      }
+    } catch {
+      setCouponError('Error al aplicar el cupón');
+    } finally {
+      setCouponLoading(false);
+    }
+  };
 
   const handleSubscribe = async (planId: string, precio: number) => {
     if (!profileId) {
@@ -183,6 +235,59 @@ export default function PlanesPage() {
           <p className="text-lg text-dark-600">
             Selecciona el plan que mejor se adapte a tus necesidades
           </p>
+
+          {/* Sección de cupón */}
+          {couponApplied ? (
+            <div className="mt-6 inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-6 py-3 rounded-xl font-medium">
+              <CheckCircle className="w-5 h-5" />
+              ¡Cupón aplicado! Redirigiendo...
+            </div>
+          ) : (
+            <div className="mt-8 max-w-md mx-auto">
+              <p className="text-sm text-dark-500 mb-3">¿Tienes un código promocional?</p>
+              <div className="flex gap-2">
+                <div className="flex-1 relative">
+                  <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" />
+                  <input
+                    type="text"
+                    value={couponCode}
+                    onChange={(e) => { setCouponCode(e.target.value.toUpperCase()); setCouponValid(null); setCouponError(''); }}
+                    placeholder="FUNDADOR"
+                    className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-dark-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 transition text-sm uppercase"
+                  />
+                </div>
+                <button
+                  onClick={handleValidateCoupon}
+                  disabled={couponLoading || !couponCode.trim()}
+                  className="px-4 py-2.5 rounded-xl bg-dark-900 text-white text-sm font-medium hover:bg-dark-700 disabled:opacity-50 transition"
+                >
+                  {couponLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Validar'}
+                </button>
+              </div>
+
+              {couponError && (
+                <div className="mt-2 flex items-center gap-2 text-red-600 text-sm">
+                  <X className="w-4 h-4" />{couponError}
+                </div>
+              )}
+
+              {couponValid && (
+                <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-xl">
+                  <p className="text-green-700 font-medium text-sm mb-1">✓ {couponValid.description}</p>
+                  <p className="text-green-600 text-sm mb-3">
+                    {couponValid.months} meses de {couponValid.plan.toUpperCase()} gratis
+                  </p>
+                  <button
+                    onClick={handleApplyCoupon}
+                    disabled={couponLoading}
+                    className="w-full py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition disabled:opacity-50"
+                  >
+                    {couponLoading ? 'Aplicando...' : '🎉 Activar cupón'}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
