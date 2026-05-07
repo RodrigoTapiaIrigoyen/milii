@@ -78,6 +78,10 @@ export async function POST(req: NextRequest) {
           currency_id: 'MXN',
         },
       ],
+      payer: {
+        name: 'PlacerLux',
+      },
+      statement_descriptor: 'PlacerLux',
       external_reference: JSON.stringify({
         paymentId: payment._id.toString(),
         userId: userId.toString(),
