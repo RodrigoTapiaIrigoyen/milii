@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
-        { error: 'Credenciales inválidas' },
+        { error: 'El correo electrónico o la contraseña son incorrectos.' },
         { status: 401 }
       );
     }
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       return NextResponse.json(
-        { error: 'Credenciales inválidas' },
+        { error: 'El correo electrónico o la contraseña son incorrectos.' },
         { status: 401 }
       );
     }

@@ -643,8 +643,13 @@ export default function PublicarPage() {
           </div>
           <p className="mt-6 text-sm text-brand-200">
             ¿Tienes dudas?{' '}
-            <a href="mailto:staioirish@gmail.com" className="underline hover:text-white transition">
-              Escríbenos a staioirish@gmail.com
+            <a
+              href="https://wa.me/525662972039?text=Hola%2C%20quiero%20publicar%20mi%20perfil%20en%20PlacerLux.%20%C2%BFMe%20pueden%20orientar%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white transition"
+            >
+              Escríbenos por WhatsApp
             </a>
           </p>
         </div>

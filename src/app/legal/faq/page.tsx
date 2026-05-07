@@ -137,7 +137,7 @@ const faqs: FAQ[] = [
   {
     category: 'Soporte',
     question: '¿Cómo contacto a soporte?',
-    answer: 'Puedes contactarnos por WhatsApp al +52 566 297 2039 o por email a staioirish@gmail.com. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
+    answer: 'Puedes contactarnos por WhatsApp al +52 566 297 2039 (enlace directo en el dashboard → Soporte) o por email a staioirish@gmail.com. Los usuarios VIP tienen acceso a soporte prioritario con respuesta en menos de 24 horas.',
   },
   {
     category: 'Soporte',

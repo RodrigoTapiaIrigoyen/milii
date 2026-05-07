@@ -60,7 +60,7 @@ const SUPPORT_CONFIG: Record<Plan, {
         icon: MessageCircle,
         label: 'WhatsApp Prioritario',
         value: '+52 566 297 2039',
-        href: 'https://wa.me/525662972039?text=Hola,%20soy%20usuario%20Premium%20y%20necesito%20soporte',
+        href: 'https://wa.me/525662972039?text=Hola%2C%20soy%20usuario%20Premium%20de%20PlacerLux%20y%20necesito%20ayuda%20con%20mi%20cuenta.%20Mi%20correo%20es%3A%20',
         description: 'Cola prioritaria – respuesta en menos de 24h',
       },
       {
@@ -85,7 +85,7 @@ const SUPPORT_CONFIG: Record<Plan, {
         icon: MessageCircle,
         label: 'WhatsApp VIP',
         value: '+52 566 297 2039',
-        href: 'https://wa.me/525662972039?text=Hola,%20soy%20usuario%20VIP%20y%20necesito%20soporte',
+        href: 'https://wa.me/525662972039?text=Hola%2C%20soy%20usuario%20VIP%20de%20PlacerLux%20y%20necesito%20soporte%20prioritario.%20Mi%20correo%20es%3A%20',
         description: 'Línea exclusiva VIP – respuesta en pocas horas',
       },
       {
