@@ -27,7 +27,7 @@ export async function PUT(
     }
 
     const data = await req.json();
-    const { status, isVerified, isFeatured, isPremium } = data;
+    const { status, isVerified, isFeatured, isPremium, action } = data;
 
     const profile = await Profile.findById(params.id);
     if (!profile) {
@@ -40,9 +40,21 @@ export async function PUT(
       profile.status = status;
       changes.push(`status: ${status}`);
     }
-    if (isVerified !== undefined && isVerified !== profile.isVerified) {
-      profile.isVerified = isVerified;
-      changes.push(`verificado: ${isVerified}`);
+    if (action === 'verify' && !profile.verification?.isVerified) {
+      profile.verification = {
+        ...profile.verification,
+        isVerified: true,
+        verifiedAt: new Date(),
+      };
+      changes.push('verification.isVerified');
+    }
+    if (isVerified !== undefined && isVerified !== profile.verification?.isVerified) {
+      profile.verification = {
+        ...profile.verification,
+        isVerified,
+        verifiedAt: isVerified ? new Date() : undefined,
+      };
+      changes.push(`verification.isVerified: ${isVerified}`);
     }
     if (isFeatured !== undefined && isFeatured !== profile.isFeatured) {
       profile.isFeatured = isFeatured;
