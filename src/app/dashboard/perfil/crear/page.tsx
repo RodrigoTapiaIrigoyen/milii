@@ -56,7 +56,7 @@ const ESTADOS_MEXICO = [
 ];
 
 const SERVICIOS_DISPONIBLES = [
-  'Masaje Terapéutico',
+  'Scort ',
   'Masaje Relajante',
   'Masaje Deportivo',
   'Masaje Thai',
@@ -378,7 +378,7 @@ export default function CrearPerfilPage() {
               </ul>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {formData.photos.map((photo, index) => (
                 <div key={index} className="relative group aspect-square rounded-xl overflow-hidden">
                   <img
@@ -740,8 +740,8 @@ export default function CrearPerfilPage() {
 
       {/* Progress Bar */}
       <div className="bg-white border-b border-dark-200">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between mb-2">
+        <div className="max-w-4xl mx-auto px-6 py-4 overflow-x-auto">
+          <div className="flex min-w-max items-center justify-center gap-2 mb-2">
             {[1, 2, 3, 4, 5, 6].map((s) => (
               <div key={s} className="flex items-center">
                 <div
@@ -757,7 +757,7 @@ export default function CrearPerfilPage() {
                 </div>
                 {s < 6 && (
                   <div
-                    className={`w-12 h-1 mx-2 ${
+                    className={`w-10 h-1 mx-2 ${
                       s < step ? 'bg-green-500' : 'bg-dark-200'
                     }`}
                   />
