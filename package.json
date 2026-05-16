@@ -27,6 +27,7 @@
     "react-dom": "^18.3.0",
     "recharts": "^3.8.1",
     "resend": "^6.12.2",
+    "sharp": "^0.34.5",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3"
   },
