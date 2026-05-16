@@ -1055,9 +1055,9 @@ export default function AdminDashboardPage() {
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-end gap-2">
                             <button
-                              onClick={() => window.open(`/perfiles/${profile._id}`, '_blank')}
+                              onClick={() => window.open(profile.isPublished ? `/perfiles/${profile._id}` : `/perfiles/${profile._id}/preview`, '_blank')}
                               className="p-2 hover:bg-blue-500/20 rounded-lg text-blue-400 transition"
-                              title="Ver perfil"
+                              title={profile.isPublished ? 'Ver perfil público' : 'Ver preview del perfil'}
                             >
                               <Eye className="w-4 h-4" />
                             </button>
