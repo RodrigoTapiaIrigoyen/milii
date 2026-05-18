@@ -4,6 +4,7 @@ import { User } from '@/models/User';
 import { Profile } from '@/models/Profile';
 import { AdminLog } from '@/models/AdminLog';
 import { getUserFromRequest } from '@/lib/auth';
+import { createNotification } from '@/lib/shared/notifications';
 
 // =============================================
 // PUT - Actualizar estado de perfil (admin)
@@ -35,18 +36,35 @@ export async function PUT(
     }
 
     // Actualizar campos
-    const changes = [];
+    const changes: string[] = [];
     if (status && status !== profile.status) {
       profile.status = status;
       changes.push(`status: ${status}`);
     }
-    if (action === 'verify' && !profile.verification?.isVerified) {
-      profile.verification = {
-        ...profile.verification,
-        isVerified: true,
-        verifiedAt: new Date(),
-      };
-      changes.push('verification.isVerified');
+    if (action === 'feature') {
+      if (!profile.isFeatured) {
+        profile.isFeatured = true;
+        changes.push('destacado: true');
+      }
+    }
+    if (action === 'verify') {
+      if (!profile.verification?.isVerified) {
+        profile.verification = {
+          ...profile.verification,
+          isVerified: true,
+          verifiedAt: new Date(),
+        };
+        changes.push('verification.isVerified: true');
+      }
+
+      if (!profile.isPublished) {
+        profile.approvalStatus = 'approved';
+        profile.approvedAt = new Date();
+        profile.approvedBy = userId as any;
+        profile.isPublished = true;
+        profile.publishedAt = new Date();
+        changes.push('approvalStatus: approved', 'isPublished: true');
+      }
     }
     if (isVerified !== undefined && isVerified !== profile.verification?.isVerified) {
       profile.verification = {
@@ -74,7 +92,18 @@ export async function PUT(
         action: 'update_profile',
         targetType: 'profile',
         targetId: profile._id,
-        details: `Actualizó perfil: ${changes.join(', ')}`
+        details: `Actualizó perfil: ${changes.join(', ')}`,
+      });
+    }
+
+    if (action === 'verify' && changes.length > 0 && profile.userId) {
+      await createNotification({
+        userId: profile.userId.toString(),
+        type: 'profile_approved',
+        title: 'Tu perfil ha sido aprobado',
+        message: 'Hemos verificado tu perfil y ya está publicado en PlacerLux.',
+        link: `/perfiles/${profile._id}`,
+        metadata: { profileId: profile._id.toString() },
       });
     }
 

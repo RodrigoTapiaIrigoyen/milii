@@ -136,7 +136,7 @@ interface Stats {
   pendingApprovals: number;
 }
 
-type TabType = 'overview' | 'users' | 'profiles' | 'payments' | 'moderation' | 'review' | 'support';
+type TabType = 'overview' | 'users' | 'profiles' | 'payments' | 'moderation' | 'review' | 'support' | 'verifications';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -173,6 +173,8 @@ export default function AdminDashboardPage() {
   const [sendingReply, setSendingReply] = useState(false);
   const [savingNote, setSavingNote] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [missingVerifications, setMissingVerifications] = useState<any[]>([]);
+  const [loadingMissingVerifications, setLoadingMissingVerifications] = useState(false);
 
   useEffect(() => {
     checkAdminAccess();
@@ -521,6 +523,53 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const loadMissingVerifications = async () => {
+    setLoadingMissingVerifications(true);
+    try {
+      const res = await fetch('/api/admin/missing-verification');
+      if (!res.ok) throw new Error('Error cargando datos');
+      const data = await res.json();
+      setMissingVerifications(data.results || []);
+    } catch (error) {
+      alert('Error al cargar verificaciones pendientes');
+    } finally {
+      setLoadingMissingVerifications(false);
+    }
+  };
+
+  const resendVerification = async (email: string) => {
+    if (!confirm(`Reenviar email de verificación a ${email}?`)) return;
+    try {
+      const res = await fetch('/api/auth/send-verification', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert(data.message || 'Email reenviado');
+        await loadMissingVerifications();
+      } else {
+        alert(data.error || data.message || 'Error al reenviar');
+      }
+    } catch (error) {
+      alert('Error al reenviar verificación');
+    }
+  };
+
+  const resendAllMissing = async () => {
+    if (!confirm(`Reenviar verificación a ${missingVerifications.length} usuarios?`)) return;
+    for (const u of missingVerifications) {
+      try {
+        // Pausa pequeña para evitar rate-limit
+        // eslint-disable-next-line no-await-in-loop
+        await resendVerification(u.email);
+      } catch (e) {
+        // continuar
+      }
+    }
+  };
+
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/');
@@ -639,6 +688,23 @@ export default function AdminDashboardPage() {
               {stats && stats.pendingApprovals > 0 && (
                 <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                   {stats.pendingApprovals}
+                </span>
+              )}
+            </button>
+
+            <button
+              onClick={() => { setCurrentTab('verifications'); setSidebarOpen(false); }}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                currentTab === 'verifications'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'text-dark-300 hover:bg-dark-700 hover:text-white'
+              }`}
+            >
+              <Send className="w-5 h-5" />
+              <span className="font-medium">Verificaciones</span>
+              {stats && stats.pendingVerifications > 0 && (
+                <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                  {stats.pendingVerifications}
                 </span>
               )}
             </button>
@@ -817,6 +883,78 @@ export default function AdminDashboardPage() {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Verifications Tab */}
+        {currentTab === 'verifications' && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between flex-wrap gap-3">
+              <div>
+                <h2 className="text-3xl font-bold text-white">Verificaciones Pendientes</h2>
+                <p className="text-slate-400">Usuarios sin correo verificado</p>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={loadMissingVerifications}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl"
+                >
+                  {loadingMissingVerifications ? 'Cargando...' : 'Cargar lista'}
+                </button>
+                <button
+                  onClick={resendAllMissing}
+                  disabled={missingVerifications.length === 0}
+                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl disabled:opacity-50"
+                >
+                  Reenviar a todos
+                </button>
+              </div>
+            </div>
+
+            <div className="admin-card p-4">
+              {loadingMissingVerifications && <p className="text-slate-400">Cargando...</p>}
+              {!loadingMissingVerifications && missingVerifications.length === 0 && (
+                <p className="text-slate-400">No se encontraron usuarios sin verificación.</p>
+              )}
+
+              {!loadingMissingVerifications && missingVerifications.length > 0 && (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-slate-400 text-left">
+                        <th className="px-4 py-2">Email</th>
+                        <th className="px-4 py-2">Creado</th>
+                        <th className="px-4 py-2">Token reciente</th>
+                        <th className="px-4 py-2">Perfil</th>
+                        <th className="px-4 py-2 text-right">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {missingVerifications.map((u: any) => (
+                        <tr key={u.userId} className="border-t border-slate-700/40">
+                          <td className="px-4 py-3 text-white">{u.email}</td>
+                          <td className="px-4 py-3 text-slate-400">{new Date(u.createdAt).toLocaleString()}</td>
+                          <td className="px-4 py-3 text-slate-400">{u.hasRecentToken ? 'Sí' : 'No'}</td>
+                          <td className="px-4 py-3 text-slate-400">
+                            {u.profile ? (
+                              <a href={`/admin/profiles/${u.profile.id}`} className="underline text-purple-300">Ver perfil</a>
+                            ) : '—'}
+                          </td>
+                          <td className="px-4 py-3 text-right">
+                            <button
+                              onClick={() => resendVerification(u.email)}
+                              className="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded-lg"
+                            >
+                              Reenviar
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -1061,11 +1199,15 @@ export default function AdminDashboardPage() {
                             >
                               <Eye className="w-4 h-4" />
                             </button>
-                            {!profile.verification?.isVerified && (
+                            {(!profile.verification?.isVerified || !profile.isPublished) && (
                               <button
                                 onClick={() => handleVerifyProfile(profile._id)}
                                 className="p-2 hover:bg-green-500/20 rounded-lg text-green-400 transition"
-                                title="Verificar"
+                                title={profile.isPublished
+                                  ? 'Verificar perfil'
+                                  : profile.verification?.isVerified
+                                    ? 'Publicar perfil'
+                                    : 'Verificar y publicar perfil'}
                               >
                                 <CheckCircle className="w-4 h-4" />
                               </button>
